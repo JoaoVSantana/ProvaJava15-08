@@ -1,0 +1,24 @@
+package br.org.sesisenai.biblioteca_jpa_template.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Bibliotecario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String nome;
+    @Column(nullable = false, unique = true, length = 20)
+    private String matricula;
+    @OneToMany(mappedBy = "bibliotecario")
+    private List<Emprestimo> emprestimos;
+}
